@@ -1,7 +1,7 @@
 // maquina_de_dulces_Elizabeth.cpp : Defines the entry point for the console application
 //COMP2315
 //4 octubre 2014.
-//Este programa simula una maquina de dulce computadorizada.
+//This program simulates a candy machine.
 //
 
 #include "stdafx.h"	//header files
@@ -11,43 +11,43 @@
 
 using namespace std;
 
-void inicio();	//prototipos de las funciones
+void inicio();	//function prototypes
 void func_basica(int x, string);
 
 int main()
 {
-	string dulce;	//variables locales
+	string dulce;	//local variables
 	int precio_dulce;
 	char otro;
 	
 	do 
 	{
-	inicio();	//se llama a la funcion inicio 
+	inicio();	//call inicio function
 		
-	cout << "Que tipo de dulce desea?: ";
+	cout << "Select candy (A,B or C): ";
 	char escoge;
 
 	do 
 	{
 		cin >> escoge;
 
-		switch (escoge)		//depende el tipo de dulce que se escoge entre a, b o c
+		switch (escoge)		//cases depending on the selection a, b o c
 			{
 			case 'a':
-			case 'A': cout << "Entre el nombre del dulce que selecciono de tipo A: "; 
+			case 'A': cout << "Enter the name of the candy A: "; 
 				break;
 			case 'b':
-			case 'B': cout << "Entre el nombre del dulce que selecciono de tipo B: ";
+			case 'B': cout << "Enter the name of the candy B: ";
 				break;
 			case 'c':
-			case 'C': cout << "Entre el nombre del dulce que selecciono de tipo C: ";
+			case 'C': cout << "Enter the name of the candy C: ";
 				break;
-			default: cout << "Tipo de dulce invalido...Entre otro tipo: ";
+			default: cout << "Invalid selection...Please enter A, B or C: ";
 			}
 		}while(escoge != 'a' && escoge != 'A' && escoge != 'b' && escoge != 'B' && escoge != 'c' && escoge != 'C');	//si no es a, b o c sigue corriendo
 	cin >>  dulce;
 
-	if (escoge == 'a' || escoge == 'A')	//se le asigna el precio al dulce dependiendo la opcion seleccionada por el cliente.
+	if (escoge == 'a' || escoge == 'A')	//a price is assigned depending on the selection.
 		{
 			precio_dulce = 50;
 		}
@@ -59,16 +59,16 @@ int main()
 		{
 			precio_dulce = 75;
 		}
-	cout << "El precio del dulce es:" << precio_dulce;	//se le informa el precio del dulce al cliente
+	cout << "The price is :" << precio_dulce;	//price of the candy is displayed.
 
-	func_basica(precio_dulce, dulce);	//se llama a la func_basica
+	func_basica(precio_dulce, dulce);	//func_basica function called
 
-	cout << "\nDesea otro dulce(s/n)? ";	//luego de haber corrido la func_basica se le pregunta al cliente si desea o no otro dulce
+	cout << "\nWould you like another candy(y/n)? ";	
 		cin >> otro;
 
-	}while(otro == 's' || otro == 'S');	//vuelve a correr siempre y cuando se seleccione s o S
+	}while(otro == 's' || otro == 'S');	//runs while the selection is y o Y 
 
-	if(otro == 'n' || otro == 'N')	//si el usuario no quiere mas dulces
+	if(otro == 'n' || otro == 'N')	
 		{
 			cout << "Gracias...Vuelva pronto\n\n";
 		}
@@ -76,58 +76,58 @@ system("pause");
 return 0;
 }	//main
 
-void inicio()	//funcion de inicio presenta el menu de las opciones de dulces
+void inicio()	//funcion presents the menu of options
 {
-	cout << "**MAQUINA DE DULCES**\n\n";
-	cout << "Dulce A: .50 centavos";
-	cout << "\tDulce B: .60 centavos";
-	cout << "\tDulce C: .75 centavos\n\n";
+	cout << "**Candy Machine**\n\n";
+	cout << "Candy A: .50 cents";
+	cout << "\tCandy B: .60 cents";
+	cout << "\tCandy C: .75 cents\n\n";
 }
 	
-void func_basica(int x, string candy)	//la func_basica tiene 2 parametros el de x es el precio del dulce y el de string es el nombre del dulce
+void func_basica(int x, string candy)	//func_basica has two parameters. x which is the price of the candy and string which is the name of the candy
 {
 	int cant_entrada = 0;	//variables
 	int moneda;
-	int peseta = 0;		//contadores por tipo de moneda entrada
+	int peseta = 0;		//counters for the inserted coins
 	int dime = 0;
 	int nickel = 0;	
 			
 	do 
 		{
-		cout << "\nEntre una moneda: ";	//se pide moneda
-		cin >> moneda;	//el usuario entra moneda
+		cout << "\nEnter coins: ";	
+		cin >> moneda;	//the user enters a coin
 
-			if (moneda != 5 && moneda != 10 && moneda != 25)	//se verifican las monedas. si no son 5, 10 o 25, es moneda invalida
+			if (moneda != 5 && moneda != 10 && moneda != 25)	//coin verification. if they aren't 5, 10 or 25, the coin is invalid.
 			{
-				cout << "Moneda invalida... Entre otra moneda.\n";
+				cout << "Invalid coin... Please insert another coin.\n";
 				cin >> moneda;
 			}
 			if (moneda == 5)	
 			{
-				nickel++;	//contador de nickel
+				nickel++;	//nickel counter
 			}
 			if (moneda == 10)		
 			{
-				dime++;		//contador de dime
+				dime++;		//dime counter
 			}
 			if (moneda == 25)	
 			{
-				peseta++;	//contador de peseta
+				peseta++;	//quarter counter
 			}	
 
-			cant_entrada += moneda;	//se va sumando la cantidad de monedas validas entradas
+			cant_entrada += moneda;	//sum of the valid coins inserted.
 
-	}while(cant_entrada < x);	//va a correr mientras la cantidad de monedas validas entradas sea menor que x que viene siendo el valor del dulce
+	}while(cant_entrada < x);	//will run while the quantity of valid coins < to the candy price
 
-	cout << "\nAqui esta su " << candy << "...";	//se entrega el dulce
+	cout << "\nPlease take your " << candy << "...";	//candy sold
 	
-		if(cant_entrada > x)	//si la cantidad entrada es mayor que el precio del dulce devuelve el cambio
+		if(cant_entrada > x)	//if coin quantity is > to candy price, returns change.
 		{
 			cant_entrada -= x;
-			cout << "Aqui esta su cambio = " << cant_entrada << " centavos";
+			cout << "Here is your change = " << cant_entrada << " cents";
 		}
-		cout << "\n\nSu cantidad:  ";	//se presenta la cantidad entrada de las monedas validas
-		cout << peseta <<" peseta(s)" <<  endl;
+		cout << "\n\nCoins entered:  ";	//Displays the cuantity of valid coins inserted.
+		cout << peseta <<" Quarter(s)" <<  endl;
 		cout << setw(15) << dime << " dime(s)" <<  endl;
 		cout << setw(15) << nickel <<" nickel(s)" << endl;
 }	//func_basica
